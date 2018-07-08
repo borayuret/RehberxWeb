@@ -28,5 +28,6 @@ a:link:hover, a:visited:hover  {
 div.ui-growl {
    left: 50%;
    right: 0;
+   top: 120px;
    margin-left:-150px;
 }
