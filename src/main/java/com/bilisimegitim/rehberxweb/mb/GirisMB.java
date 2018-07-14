@@ -58,7 +58,7 @@ public class GirisMB {
             // giriş başarılı olduysa, kullanıcı adını session'a yazıyorum.
             HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false);
             session.setAttribute("username", kullanici);
-            return "menu.xhtml";
+            return "menu.xhtml?faces-redirect=true";
         }
         else
         {
