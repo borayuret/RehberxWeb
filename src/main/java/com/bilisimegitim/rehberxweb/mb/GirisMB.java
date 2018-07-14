@@ -69,6 +69,17 @@ FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage
         
     }
     
+    public String guvenliCikis()
+    {
+       
+        HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Session sonlandırıldı.", 
+                    session.getId() + " nolu session sonlandırıldı!"));
+        
+        return "giris.xhtml";
+        
+    }
+    
     
     
     

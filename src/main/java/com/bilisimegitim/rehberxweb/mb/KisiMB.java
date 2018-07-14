@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -112,6 +114,64 @@ public class KisiMB implements Serializable {
 
         return "kisiListele.xhtml?faces-redirect=true";
 
+    }
+    
+    public String sil()
+    {
+       Kisi k = kisiFacade.find(no);
+       
+       kisiFacade.remove(k);
+       
+       kisiListesi = kisiFacade.findAll();
+       
+       return "kisiListele.xhtml?faces-redirect=true";
+       
+    }     
+    
+    
+    public String getir()
+    {
+       Kisi k = kisiFacade.find(no);
+       
+       ad = k.getAd();
+       soyad =k.getSoyad();
+       maas = k.getMaas();
+       dogtar = k.getDogtar();
+             
+       return "";
+    
+    }
+    
+    public String temizle()
+    {
+       no = 0;
+       ad = "";
+       soyad="";
+       maas = null;
+       dogtar = null;
+    
+    
+       return "";
+    }
+    
+    public String guncelle()
+    {
+        
+        Kisi k = new Kisi();
+        
+        k.setNo(no);
+        k.setAd(ad);
+        k.setSoyad(soyad);
+        k.setMaas(maas);
+        k.setDogtar(dogtar);
+        
+        kisiFacade.edit(k); 
+        
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Güncellendi", no + " numaralı kayıt başarıyla güncellendi."));
+        
+        temizle();
+    
+        return "";
     }
 
 }
